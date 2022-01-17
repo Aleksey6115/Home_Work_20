@@ -1,0 +1,24 @@
+﻿@model IEnumerable<Home_Work_20.Models.ContactModel.Contact>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>Список контактов</title>
+    </head>
+
+    <body>
+
+        <h3>Контакты</h3>
+
+        @foreach (var c in Model)
+        {
+            <ul>
+                <li><a href="~/Home/Show/@c.Id">@c.LastName @c.FirstName</a></li>
+            </ul>
+        }
+    </body>
+</html>

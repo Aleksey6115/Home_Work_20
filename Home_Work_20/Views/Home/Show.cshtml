@@ -1,0 +1,50 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@model IEnumerable<Home_Work_20.Models.ContactModel.Contact>
+
+@{
+}
+
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+        <title>Информация о контакте</title>
+    </head>
+
+    <body>
+
+        <h3>Полная информация о контакте:</h3>
+
+        <table class=table-condensed>
+
+            <tr>
+                <td><b>Id:</b> @ViewBag.Id</td>
+            </tr>
+
+            <tr>
+                <td><b>Фамилия:</b> @ViewBag.LastName</td>
+            </tr>
+
+            <tr>
+                <td><b>Имя:</b> @ViewBag.FirstName</td>
+            </tr>
+
+            <tr>
+                <td><b>Адрес:</b> @ViewBag.Address</td>
+            </tr>
+
+            <tr>
+                <td><b>Телефон:</b> @ViewBag.ContactPhone</td>
+            </tr>
+
+            <tr>
+                <td><b>Описание:</b> @ViewBag.Descrip</td>
+            </tr>
+        </table>
+    </body>
+</html>
+
