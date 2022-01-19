@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace Home_Work_20.Models.ContactModel
+namespace ContactLibrary
 {
     /// <summary>
     /// Контекст для класса Contact

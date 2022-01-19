@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 
-namespace Home_Work_20.Models.ContactModel
+namespace ContactLibrary
 {
     /// <summary>
     /// Класс для добавления данных в пустую таблицу

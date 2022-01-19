@@ -6,8 +6,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-using Home_Work_20.Models.ContactModel;
-using Microsoft.EntityFrameworkCore;
+using ContactLibrary;
 
 namespace Home_Work_20.Controllers
 {
