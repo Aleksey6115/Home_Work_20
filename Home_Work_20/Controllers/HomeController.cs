@@ -23,6 +23,7 @@ namespace Home_Work_20.Controllers
             this.contactContext = cc;
         }
 
+        [HttpGet]
         /// <summary>
         /// Отображения на View списка контактов
         /// </summary>
@@ -32,27 +33,96 @@ namespace Home_Work_20.Controllers
             return View(contactContext.Contacts.ToList());
         }
 
+        [HttpGet]
+        /// <summary>
+        /// Показать информацию о контакте
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public IActionResult Show(int? id)
         {
             if (id == null) return RedirectToAction("Index");
 
-            var contact = (from c in contactContext.Contacts
-                           where c.Id == id
-                           select c).ToList();
+            foreach(var contact in contactContext.Contacts)
+            {
+                if (contact.Id == id) return View(contact);
+            }
 
-            Contact SelectedContact = new Contact();
+            return RedirectToAction("Index");
+        }
 
-            foreach (var c in contact)
-                SelectedContact = c;
-
-            ViewBag.Id = SelectedContact.Id;
-            ViewBag.LastName = SelectedContact.LastName;
-            ViewBag.FirstName = SelectedContact.FirstName;
-            ViewBag.Address = SelectedContact.Address;
-            ViewBag.ContactPhone = SelectedContact.ContactPhone;
-            ViewBag.Descrip = SelectedContact.Description;
-
+        /// <summary>
+        /// Открыть страницу "Добавить контакт"
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public IActionResult AddContact()
+        {
             return View();
+        }
+
+        /// <summary>
+        /// Добавление нового контакта
+        /// </summary>
+        /// <param name="lastName"></param>
+        /// <param name="firstName"></param>
+        /// <param name="contactPhone"></param>
+        /// <param name="address"></param>
+        /// <param name="description"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public IActionResult AddContact(Contact contact)
+        {
+            if (ModelState.IsValid)
+            {
+                contactContext.Add(contact);
+                contactContext.SaveChanges();
+            }
+
+            return RedirectToAction("Index");
+        }
+
+        /// <summary>
+        /// Удалить выбранный контакт
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public IActionResult DeleteContact(Contact contact)
+        {
+            contactContext.Remove(contact);
+            contactContext.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+
+        /// <summary>
+        /// Открыть страницу для редактирования
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public IActionResult EditContact(int? id)
+        {
+            Contact SelectedContact = contactContext.Contacts.FirstOrDefault(x=> x.Id == id);
+            return View(SelectedContact);
+        }
+
+        /// <summary>
+        /// Редактирования контакта
+        /// </summary>
+        /// <param name="ChangeContact"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public IActionResult EditContact(Contact ChangeContact)
+        {
+            if (ModelState.IsValid)
+            {
+                contactContext.Contacts.Update(ChangeContact);
+                contactContext.SaveChanges();
+            }
+
+            return RedirectToAction("Index");
         }
     }
 }

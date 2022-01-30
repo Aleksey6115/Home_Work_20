@@ -20,16 +20,16 @@ namespace ContactLibrary
                     {
                         LastName = "Иванов",
                         FirstName = "Иван",
-                        ContactPhone = "8(345) 234-23-56",
-                        Address = "Улица Ивановская",
+                        ContactPhone = "8 (345) 23-23-564",
+                        Address = "ivan@gmail.com",
                         Description = "Реальный пацан"
                     },
                     new Contact
                     {
                         LastName = "Петрович",
                         FirstName = "Пётр",
-                        ContactPhone = "8(123) 987-43-87",
-                        Address = "Улица Петровская",
+                        ContactPhone = "8 (123) 98-43-877",
+                        Address = "petr@gmail.com",
                         Description = "Так себе пацан"
                     });
 

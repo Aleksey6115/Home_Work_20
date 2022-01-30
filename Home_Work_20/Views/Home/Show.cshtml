@@ -2,7 +2,7 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 
-@model IEnumerable<ContactLibrary.Contact>
+@model ContactLibrary.Contact
 
 @{
 }
@@ -22,29 +22,47 @@
         <table class=table-condensed>
 
             <tr>
-                <td><b>Id:</b> @ViewBag.Id</td>
+                <td><b>Id:</b> @Html.DisplayFor(x=>x.Id) </td>
             </tr>
 
             <tr>
-                <td><b>Фамилия:</b> @ViewBag.LastName</td>
+                <td><b>Фамилия:</b> @Html.DisplayFor(x=>x.LastName)</td>
             </tr>
 
             <tr>
-                <td><b>Имя:</b> @ViewBag.FirstName</td>
+                <td><b>Имя:</b> @Html.DisplayFor(x=>x.FirstName)</td>
             </tr>
 
             <tr>
-                <td><b>Адрес:</b> @ViewBag.Address</td>
+                <td><b>Email адрес:</b> @Html.DisplayFor(x=>x.Address)</td>
             </tr>
 
             <tr>
-                <td><b>Телефон:</b> @ViewBag.ContactPhone</td>
+                <td><b>Телефон:</b> @Html.DisplayFor(x=>x.ContactPhone)</td>
             </tr>
 
             <tr>
-                <td><b>Описание:</b> @ViewBag.Descrip</td>
+                <td><b>Описание:</b> @Html.DisplayFor(x=>x.Description)</td>
             </tr>
         </table>
+
+        <p></p>
+
+        <form asp-controller="Home" asp-action="DeleteContact" asp-route-Id="@Model.Id">
+
+            <p><input type="submit" value="Удалить контакт" /></p>
+
+        </form>
+
+
+        <p></p>
+
+        <form method="get" asp-controller="Home" asp-action="EditContact" asp-route-Id="@Model.Id">
+                        
+            <p><input type="submit" value="Изменить данные" /></p>
+
+        </form>
+
     </body>
 </html>
 

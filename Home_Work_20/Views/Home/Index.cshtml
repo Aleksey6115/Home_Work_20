@@ -17,7 +17,7 @@
         @foreach (var c in Model)
         {
             <ul>
-                <li><a href="~/Home/Show/@c.Id">@c.LastName @c.FirstName</a></li>
+                @Html.ActionLink($"{@c.LastName} - {@c.FirstName}", "Show", "Home", new {id = @c.Id})
             </ul>
         }
     </body>

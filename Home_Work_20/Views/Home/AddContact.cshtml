@@ -1,0 +1,70 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@section scripts{
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}
+
+@model ContactLibrary.Contact
+
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+        <title>Добаить новый контакт</title>
+    </head>
+
+    <body>
+        <h3>Новый контакт:</h3>
+
+        <form asp-antiforgery="true" asp-action="AddContact" asp-controller="Home">
+
+            <div>
+
+                <div class="validation" asp-validation-summary=ModelOnly></div>
+
+                <p>
+                    <input type="text" asp-for=LastName placeholder="Фамилия контакта"/>
+                    <span asp-validation-for="LastName"></span><br />
+                </p>
+
+                <p>
+                    <input type="text" asp-for=FirstName placeholder="Имя клиента" />
+                    <span asp-validation-for=FirstName></span>
+                </p>
+
+                <p>
+                    <input type="text" asp-for=ContactPhone placeholder="Контактный телефон" />
+                    <span asp-validation-for=ContactPhone></span>
+                </p>
+
+                <p>
+                    <input type="text" asp-for=Address placeholder="Email Адрес" />
+                    <span asp-validation-for=Address></span>
+                </p>
+
+                <p>
+                    <input type="text" asp-for=Description placeholder="Описание" />
+                </p>
+
+            </div>
+
+            <p></p>
+
+            <p>
+               <input type="submit" value="Добавить контакт" />
+               <input type="reset" value="Сбросить значения" />
+            </p>
+
+        </form>
+
+</body>
+
+</html>
+
+
