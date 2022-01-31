@@ -29,6 +29,9 @@ namespace Home_Work_20
             string connection = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<ContactContext>(options => options.UseSqlServer(connection));
 
+            // Регстрируем реализацию IRepository
+            services.AddTransient<IRepository<Contact>, SQLContactRepository>();
+
             services.AddControllersWithViews();
         }
 

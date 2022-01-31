@@ -12,26 +12,20 @@ namespace Home_Work_20.Controllers
 {
     public class HomeController : Controller
     {
-        private ContactContext contactContext; // Контекст данных
+        private IRepository<Contact> contactRepository;
 
         /// <summary>
-        /// Конструктор определяет контекст данных при помощи DI
+        /// Механизм DI сам подставит зарегестрированную реализацию
         /// </summary>
-        /// <param name="cc"></param>
-        public HomeController(ContactContext cc)
-        {
-            this.contactContext = cc;
-        }
+        /// <param name="rep"></param>
+        public HomeController(IRepository<Contact> rep) { contactRepository = rep; }
 
         [HttpGet]
         /// <summary>
         /// Отображения на View списка контактов
         /// </summary>
         /// <returns></returns>
-        public IActionResult Index()
-        {
-            return View(contactContext.Contacts.ToList());
-        }
+        public IActionResult Index() => View(contactRepository.GetList());
 
         [HttpGet]
         /// <summary>
@@ -43,12 +37,7 @@ namespace Home_Work_20.Controllers
         {
             if (id == null) return RedirectToAction("Index");
 
-            foreach(var contact in contactContext.Contacts)
-            {
-                if (contact.Id == id) return View(contact);
-            }
-
-            return RedirectToAction("Index");
+            return View(contactRepository.Get(id));
         }
 
         /// <summary>
@@ -56,10 +45,7 @@ namespace Home_Work_20.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public IActionResult AddContact()
-        {
-            return View();
-        }
+        public IActionResult AddContact() => View();
 
         /// <summary>
         /// Добавление нового контакта
@@ -75,8 +61,8 @@ namespace Home_Work_20.Controllers
         {
             if (ModelState.IsValid)
             {
-                contactContext.Add(contact);
-                contactContext.SaveChanges();
+                contactRepository.Create(contact);
+                contactRepository.Save();
             }
 
             return RedirectToAction("Index");
@@ -90,8 +76,8 @@ namespace Home_Work_20.Controllers
         [HttpPost]
         public IActionResult DeleteContact(Contact contact)
         {
-            contactContext.Remove(contact);
-            contactContext.SaveChanges();
+            contactRepository.Delete(contact);
+            contactRepository.Save();
 
             return RedirectToAction("Index");
         }
@@ -102,11 +88,7 @@ namespace Home_Work_20.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet]
-        public IActionResult EditContact(int? id)
-        {
-            Contact SelectedContact = contactContext.Contacts.FirstOrDefault(x=> x.Id == id);
-            return View(SelectedContact);
-        }
+        public IActionResult EditContact(int? id) => View(contactRepository.Get(id));
 
         /// <summary>
         /// Редактирования контакта
@@ -118,8 +100,8 @@ namespace Home_Work_20.Controllers
         {
             if (ModelState.IsValid)
             {
-                contactContext.Contacts.Update(ChangeContact);
-                contactContext.SaveChanges();
+                contactRepository.Update(ChangeContact);
+                contactRepository.Save();
             }
 
             return RedirectToAction("Index");
