@@ -10,6 +10,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using ContactLibrary;
+using Home_Work_20.Services;
 
 namespace Home_Work_20
 {
@@ -31,6 +32,9 @@ namespace Home_Work_20
 
             // Регстрируем реализацию IRepository
             services.AddTransient<IRepository<Contact>, SQLContactRepository>();
+
+            // Регестриуем сервис для работы с репозиторием
+            services.AddTransient<SQLContactService>();
 
             services.AddControllersWithViews();
         }

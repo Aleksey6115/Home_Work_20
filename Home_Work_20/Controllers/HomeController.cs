@@ -7,25 +7,22 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using ContactLibrary;
+using Home_Work_20.Services;
 
 namespace Home_Work_20.Controllers
 {
     public class HomeController : Controller
     {
-        private IRepository<Contact> contactRepository;
+        private SQLContactService contactService;
 
-        /// <summary>
-        /// Механизм DI сам подставит зарегестрированную реализацию
-        /// </summary>
-        /// <param name="rep"></param>
-        public HomeController(IRepository<Contact> rep) { contactRepository = rep; }
+        public HomeController(SQLContactService scs) { contactService = scs; }
 
         [HttpGet]
         /// <summary>
         /// Отображения на View списка контактов
         /// </summary>
         /// <returns></returns>
-        public IActionResult Index() => View(contactRepository.GetList());
+        public IActionResult Index() => View(contactService.GetList());
 
         [HttpGet]
         /// <summary>
@@ -37,7 +34,7 @@ namespace Home_Work_20.Controllers
         {
             if (id == null) return RedirectToAction("Index");
 
-            return View(contactRepository.Get(id));
+            return View(contactService.Get(id));
         }
 
         /// <summary>
@@ -61,8 +58,7 @@ namespace Home_Work_20.Controllers
         {
             if (ModelState.IsValid)
             {
-                contactRepository.Create(contact);
-                contactRepository.Save();
+                contactService.Create(contact);
             }
 
             return RedirectToAction("Index");
@@ -76,8 +72,7 @@ namespace Home_Work_20.Controllers
         [HttpPost]
         public IActionResult DeleteContact(Contact contact)
         {
-            contactRepository.Delete(contact);
-            contactRepository.Save();
+            contactService.Delete(contact);
 
             return RedirectToAction("Index");
         }
@@ -88,7 +83,7 @@ namespace Home_Work_20.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet]
-        public IActionResult EditContact(int? id) => View(contactRepository.Get(id));
+        public IActionResult EditContact(int? id) => View(contactService.Get(id));
 
         /// <summary>
         /// Редактирования контакта
@@ -100,8 +95,7 @@ namespace Home_Work_20.Controllers
         {
             if (ModelState.IsValid)
             {
-                contactRepository.Update(ChangeContact);
-                contactRepository.Save();
+                contactService.Update(ChangeContact);
             }
 
             return RedirectToAction("Index");
