@@ -9,8 +9,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using ContactLibrary;
 using Home_Work_20.Services;
+using Domain;
+using Application;
+using Persistence;
 
 namespace Home_Work_20
 {

@@ -1,5 +1,6 @@
-﻿using ContactLibrary;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Domain;
+using Application;
 
 namespace Home_Work_20.Services
 {

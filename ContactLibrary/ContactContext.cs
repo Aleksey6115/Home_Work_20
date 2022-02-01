@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace ContactLibrary
+namespace Domain
 {
     /// <summary>
     /// Контекст для класса Contact

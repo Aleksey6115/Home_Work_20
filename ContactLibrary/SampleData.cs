@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 
-namespace ContactLibrary
+namespace Domain
 {
     /// <summary>
     /// Класс для добавления данных в пустую таблицу

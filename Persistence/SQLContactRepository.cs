@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Application;
+using Domain;
 
-namespace ContactLibrary
+namespace Persistence
 {
     public class SQLContactRepository : IRepository<Contact>
     {

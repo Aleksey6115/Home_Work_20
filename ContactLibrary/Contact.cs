@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ContactLibrary
+namespace Domain
 {
     /// <summary>
     /// Класс отображает сущность "Контакт"
