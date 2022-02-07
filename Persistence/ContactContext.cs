@@ -1,16 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Domain;
 
-namespace Domain
+namespace Persistence
 {
-    /// <summary>
-    /// Контекст для класса Contact
-    /// </summary>
     public class ContactContext : DbContext
     {
         /// <summary>
         /// Набор данных из БД
         /// </summary>
-        public DbSet<Contact> Contacts { get; set;}
+        public DbSet<Contact> Contacts { get; set; }
 
         /// <summary>
         /// Конструктор создаёт базу данных

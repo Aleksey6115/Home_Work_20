@@ -1,16 +1,10 @@
 ﻿using System.Linq;
+using Domain;
 
-namespace Domain
+namespace Persistence
 {
-    /// <summary>
-    /// Класс для добавления данных в пустую таблицу
-    /// </summary>
     public static class SampleData
     {
-        /// <summary>
-        /// Если БД пуста метод создаёт 2 записи
-        /// </summary>
-        /// <param name="context"></param>
         public static void Initialize(ContactContext context)
         {
             if (!context.Contacts.Any())
