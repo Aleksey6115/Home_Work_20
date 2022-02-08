@@ -19,7 +19,7 @@ namespace Domain
         /// </summary>
         [Required(ErrorMessage ="Укажите фамилию!")]
         [StringLength(20, ErrorMessage = "Длинна строки не должна привышать 20 символов")]
-        [RegularExpression(@"[A-Z|А-Я]{1}[a-z|а-я]{1}[a-z|а-я]*", 
+        [RegularExpression(@"[A-Z|А-ЯЁ]{1}[a-z|а-яё]{1}[a-z|а-яё]*", 
             ErrorMessage ="Фамилия должна начинаться с заглавной буквы и включать в себя только алфавитные символы!")]
         public string LastName { get; set; }
 
@@ -28,7 +28,7 @@ namespace Domain
         /// </summary>
         [Required(ErrorMessage ="Укажите имя!")]
         [StringLength(20, ErrorMessage = "Длинна строки не должна привышать 20 символов")]
-        [RegularExpression(@"[A-Z|А-Я]{1}[a-z|а-я]{1}[a-z|а-я]*",
+        [RegularExpression(@"[A-Z|А-ЯЁ]{1}[a-z|а-яё]{1}[a-z|а-яё]*",
             ErrorMessage = "Имя должно начинаться с заглавной буквы и включать в себя только алфавитные символы!")]
         public string FirstName { get; set; }
 
